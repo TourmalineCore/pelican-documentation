@@ -343,12 +343,14 @@ E2E тест: Имитация пользовательского поведен
 
 - Автоматизация создания нового тенанта перед тестами и его удаление после их завершения может быть удобной и аккуратной в плане отсутствия лишних тестовых данных.
 - Можно создать кастомный скрипт на Node.js, который взаимодействует с API Strapi для создания и настройки тестового тенанта, а также его удаления.
+
+
 # Протокол тестирования доступности: 
 
 ## Используя Playwright:
 
-1) Пишем сами тесты на каждый (если это возможно в случае конкретного элемента) элемент в рамках доступности на предмет:
-    - **проверки tab`ов** \
+1) Пишем сами тесты на каждый (если это возможно в случае конкретного элемента) элемент (компонентно) в рамках доступности на предмет:
+    - проверки tab`ов\
 **Примеры**:
 ```
 test('TabTests', async ({ page }) => {
@@ -367,26 +369,15 @@ test('TabTests', async ({ page }) => {
   };
 );
 ```
-    - проверки alt`ов \
+- Во флоу нашего основного Е2Е-теста по маршрутизации сайта, будем проверять доступность табов и их правильныйпорядок в рамках всей страницы. 
+
+- **проверки alt`ов (пока ограничимся проверкой на наличие и непустое значение)**\
 **Примеры**:
 ```
 test('AltTests', async ({ page }) => {
 
-
-    await expect (page.getByTestId(`header-logo`)).toHaveAttribute(`alt`, 'Логотип зоопарка’);
-
-    await expect (page.getByTestId(`hero-image`)).toHaveAttribute(`alt`, 'Изображение панды’);
-
-    await expect (page.getByTestId('footer-logo')).toHaveAttribute(`alt`, "Зоопарк работает при поддержке департамента культуры города Челябинска’);
-
-
-    await expect (page.getByTestId(`cards-image`).nth(0)).toHaveAttribute('alt', 'Изображение рыбы’);
-
-    await expect (page.getByTestId(`cards-image`) .nth(1)).toHaveAttribute('alt', 'Изображение аллигатора’);
-
-    await expect (page.getByTestId(`cards-image`).nth(2)).toHaveAttribute(`alt`, 'Изображение медведя’);
-
-    await expect (page.getByTestId(`cards-image`).nth(3)).toHaveAttribute(`alt`, 'Изображение быка’);
+    await expect(page.getByTestId(`header-logo`)).toHaveAttribute(`alt`, expect.not.toBeEmpty());
+    await expect(page.getByTestId(`hero-image`)).toHaveAttribute(`alt`, expect.not.toBeEmpty());
   };
 );
 ```
