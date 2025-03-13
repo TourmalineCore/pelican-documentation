@@ -11,11 +11,9 @@
 
 ## Architecture Decision Records
 
-Здесь мы также фиксируем решения, которые принимаем командой относительно архитерктуры проекта и подходов к разработке.
+Здесь мы также фиксируем решения, которые принимаем командой относительно архитектуры проекта и подходов к разработке.
 
 - [SSL-сертификат](architecture%20decision%20records/SSL-сертификат.md)
-- [Большая вложенность в API Strapi](architecture%20decision%20records/Большая%20вложенность%20в%20API%20Strapi.md)
-- [Версионирование](architecture%20decision%20records/Версионирование.md)
 - [Защита от DDoS-атак](architecture%20decision%20records/Защита%20от%20DDoS-атак.md)
 - [Инструкция по началу работы с CMS Strapi](architecture%20decision%20records/Инструкция%20по%20началу%20работы%20с%20CMS%20Strapi.md)
 - [Используемые плагины](architecture%20decision%20records/Используемые%20плагины.md)
@@ -26,7 +24,7 @@
 - [Предпросмотр сайта](architecture%20decision%20records/Предпросмотр%20сайта.md)
 - [Редактор новостей](architecture%20decision%20records/Редактор%20новостей.md)
 - [Сортировка, фильтрация и пагинация](architecture%20decision%20records/Сортировка,%20фильтрация%20и%20пагинация.md)
-- [Флоу работы с pixel-perfect тестами](architecture%20decision%20records/Флоу%20работы%20с%20pixel-perfect%20тестами.md)
+- [Процесс верстки через TDD](architecture%20decision%20records/Процесс%20верстки%20через%20TDD.md)
 - [Хранение файлов](architecture%20decision%20records/Хранение%20файлов.md)
 - [Результаты исследования подходов к реализации доступности](architecture%20decision%20records/a11y/Доступность.md)
 - [Гайдлайн по доступности](architecture%20decision%20records/a11y/Гайдлайн.md)
