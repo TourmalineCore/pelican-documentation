@@ -8,6 +8,7 @@
 - [pelican-cms](https://github.com/TourmalineCore/pelican-cms) - репозиторий с кодом для Strapi CMS. 
 - [pelican-local-env](https://github.com/TourmalineCore/pelican-local-env) - репозиторий с кодом, который развертывает весь проект в локальном кластере k8s в Docker.
 - [pelican-db-backupper](https://github.com/TourmalineCore/pelican-db-backupper) - репозиторий с функционалом для периодического создания бэкапов базы данных PostgreSQL для Strapi CMS.
+- [pelican-s3-backupper](https://github.com/TourmalineCore/pelican-s3-backupper) - репозиторий с функционалом для периодического создания бэкапов S3 для Strapi CMS.
 
 ## Architecture Decision Records
 
