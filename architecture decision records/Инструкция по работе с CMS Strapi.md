@@ -10,7 +10,7 @@
   3.3 [Предварительный просмотр;](#preview)  
   3.4 [Обязательные поля;](#required-fields)  
   3.5 [Загрузка файлов.](#upload-images)  
-4. [Редактирование страниц;](#edit-pages)    
+4. [Редактирование страниц;](#edit-pages)  
   4.1 [Добавление блоков;](#add-blocks)  
   4.2 [Виды блоков;](#kind-blocks)  
   4.3 Шапка сайта;  
@@ -21,8 +21,11 @@
 5. Добавление новостей;  
 6. Добавление документов;  
 7. Минимальная настройка перед началом работы;
-7. Возможные ошибки.  
-  7.1 На frontend`е отображается 404 страница, вместе искомого контента.  
+8. [Local-env;](#local-env-chapter)  
+  8.1 [Создание бэкапов postgres и s3;](#postgres-and-s3-backups)  
+  8.2 [Откат к версии бэкапов postgres и s3;](#postgres-and-s3-rollback-to-backups)  
+9. [Возможные ошибки.](#errors)  
+  9.1 [На frontend`е отображается 404 страница, вместе искомого контента.](#errors-404-page)  
 
 <h2 id="links">1. Ссылки:</h2>  
 
@@ -213,7 +216,159 @@
 ![strapi tickets block fields](./images/instruction-strapi-tickets-fields2.png)  
 *Поля блока с билетами (часть 2)*  
 
+<h2 id="local-env-chapter">8. Local-env</h2>  
+<h3 id="postgres-and-s3-backups">8.1 Создание бэкапов postgres и s3:</h3>  
 
+> Примечание: предварительно необходимо запустить local-env. Смотри: https://github.com/TourmalineCore/pelican-local-env  
 
+Для создания бэкапа текущей версии postgres и s3 в local-env необходимо:
+1. Перейти в ветку s3-backup в репозитории pelican-local-env:  
 
+2. Подгрузить бэкаппер s3, выполнив команду:  
+```
+helmfile cache cleanup && helmfile --environment local --namespace local -f deploy/helmfile.yaml apply
+```  
 
+3. Перейти в ветку pgsql-backup в репозитории pelican-local-env:  
+
+4. Подгрузить бэкаппер pgsql, выполнив команду:  
+```
+helmfile cache cleanup && helmfile --environment local --namespace local -f deploy/helmfile.yaml apply
+```  
+
+5. Перейти в интерфейс MinIO и скачать полученные бэкапы.  
+
+> Примечание: порядок авторизации в MinIO смотри: https://github.com/TourmalineCore/pelican-local-env  
+
+<h3 id="postgres-and-s3-rollback-to-backups">8.2 Откат к версии бэкапов postgres и s3:</h3>    
+<h4>Для отката версии postgres к версии бэкапа необходимо:</h3>  
+
+1. Сделать под postgresql-0 доступным, для этого необходимо:  
+1.1 Открыть кластер в Lens и перейти в раздел Workloads.  
+
+![lens workloads](./images/instruction-strapi-lens-workloads.png)  
+*Раздел Workloads*  
+
+1.2 Найти под postgresql-0 и нажать на него.  
+
+![postgresql-0 pod](./images/instruction-strapi-postgresql-0-pod.png)  
+*Под postgresql-0*  
+
+1.3 В открывшемся окне найти кнопку "Forward", после нажать кнопку "Start".  
+
+![lens forward postgresql-0 pod](./images/instruction-strapi-lens-forward-postgresql-0-pod.png)  
+*Forward postgresql-0 pod*  
+
+Откроется окно в браузере, где необходимо скопировать порт.  
+
+![postgresql-0 pod port](./images/instruction-strapi-postgresql-0-pod-port.png)  
+*Postgresql-0 pod port*  
+
+2. Перемещаем бекап postgres в рабочую директорию, открываем в ней терминал.  
+
+![move postgres backup to work directory](./images/instruction-strapi-moving-postgres-backup.png)  
+*Перемещение бэкапа в рабочую директорию*  
+
+3. Выполняем команду очистки схемы базы, чтобы исключить возможность возникновения конфликтов при откате к бэкапу.  
+```
+psql -U postgres -h localhost -p 61315 -d pelican_db -c "DROP SCHEMA public CASCADE; CREATE SCHEMA public;"
+```
+
+4. Выполняем команду копирования базы данных из бэкапа.  
+```
+psql -U postgres -h localhost -p 61315 -d pelican_db -f ./pgsql.sql_2025.03.28.06_02_03UTC.backup
+```  
+  
+<h4>Для отката версии s3 к версии бэкапа необходимо:</h3>  
+
+1. Открыть интерфейс MinIO, перейдя по ссылке: http://minio-s3-console.localhost:40110/browser/pelican-local-env  
+2. Авторизоваться, введя логин и пароль:  
+- `login`: *admin*  
+- `password`: *rootPassword*  
+3. Очистить хранилище, выбрав все файлы и нажав на кнопку Delete.  
+4. Нажать кнопку Upload и выбрать все файлы из бэкапа s3.  
+
+<h2 id="errors">Возможные ошибки</h2>    
+<h3 id="errors-404-page">9.1 На frontend`е отображается 404 страница, вместе искомого контента:</h3>  
+
+При первом запуске проекта вместо главной страницы и страницы контактного зоопарка (/contact-zoo) 
+будут отображаться страницы 404. Происходит это, потому что на стороне CMS эти страницы еще не были 
+созданы и опубликованы.  
+
+![UI not found page](./images/pelican-ui-404.png)  
+
+Чтобы сделать страницы доступными, необходимо (в случае local-env):  
+1. Открыть админ-панель Strapi, перейдя по ссылке:  
+      http://localhost:40110/cms/admin  
+
+      Откроется окно авторизации. Необходимо авторизоваться, используя логин и пароль:  
+      *Логин: admin@init-strapi-admin.strapi.io*  
+      *Пароль: admin*  
+
+      Примечание: Креды могут измениться, актуальные смотреть в readme.md в репозитории pelican-local-env:  
+      https://github.com/TourmalineCore/pelican-local-env
+
+      ![strapi auth window](./images/strapi-auth-window.png)  
+
+2. После авторизации необходимо перейти в раздел “Content manager”, который расположен в левой части экрана.  
+
+      ![strapi main menu](./images/strapi-main-menu.png)  
+
+3. Создание и публикация главной страницы.  
+      3.1 В левой части экрана необходимо выбрать раздел “Главная страница”.  
+
+      ![strapi select main page](./images/strapi-select-main-page.png)  
+
+      3.2 Должно открыться окно редактирования страницы. Далее необходимо нажать на “+” в блоке seo.  
+
+      ![strapi create seo](./images/strapi-create-seo.png)  
+
+      3.3 Появиться несколько полей. Обязательные поля помечены красной звездочкой в правом верхнем углу поля.  
+
+      ![strapi required fields](./images/strapi-required-fields.png)  
+
+      3.4 Заполнив требуемые поля, необходимо нажать на кнопку “Save” в правой части экрана, для сохранения черновика. После нажать на кнопку “Publish” для ее публикации.  
+
+      ![strapi save and publish](./images/strapi-save-and-publish.png)  
+
+      3.5 Переходим на UI по ссылке: http://localhost:40110/ и видим, что страница стала доступна.  
+
+      ![UI main page](./images/pelican-ui-main-page.png)  
+
+      3.6 Добавление других блоков аналогично. Необходимо нажать на “+” в верхней части экрана (над блоком seo).  
+
+      ![strapi add block](./images/strapi-add-block.png)  
+
+      3.7 Далее откроется список доступных блоков, из которых некоторые вынесены в отдельную категорию, например, “Home”. Необходимо выбрать нужный блок, например, “Hero”. 
+
+      Блоки “Shared” доступны глобально для всех страниц, блоки “Home” только для главной страницы.  
+
+      ![strapi block types](./images/strapi-block-types.png)  
+
+      3.8 Аналогично блоку seo, необходимо заполнить требуемые поля блока.  
+
+      ![strapi block fields](./images/strapi-block-fields.png)  
+
+      3.9 Далее нужно сохранить и опубликовать изменения на странице. Аналогично seo.  
+
+      ![strapi save and publish block](./images/strapi-save-and-publish-block.png)  
+
+4. Создание и публикация страницы контактного зоопарка.  
+      4.1 В левой части экрана необходимо выбрать “Страница контактного зоопарка”.  
+
+      ![strapi contact-zoo-page](./images/strapi-contact-zoo-page.png)  
+
+      4.2 Далее аналогично главной странице.  
+
+5. Добавление новостей.  
+      5.1 В левой части экрана необходимо выбрать раздел “Новости”. После необходимо нажать на “+ Create new entry”.  
+
+      ![strapi create news](./images/strapi-create-news.png)  
+
+      5.2 Далее логика аналогична добавлению новой страницы.  
+
+6. Добавление категорий документов.  
+      6.1 Аналогично новостям. Поле hasTabs позволяет добавлять/убирать разделение по годам в категории документов.  
+
+7. Добавление документов.  
+      7.1 Аналогично новостям, исключение лишь то, что перед созданием документа должна быть создана хотя бы 1 категория.
