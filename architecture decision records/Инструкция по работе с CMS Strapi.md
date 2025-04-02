@@ -2,6 +2,8 @@
 
 ## Содержание:
 1. [Ссылки;](#links)  
+  1.1 [Local-env;](#links-local-env)  
+  1.2 [Локальная разработка;](#links-local)  
 2. [Авторизация в CMS;](#auth-in-cms)  
   2.1 [Смена языка интерфейса CMS.](#auth-in-cms--change-language)  
 3. [Общая информация;](#common-information)  
@@ -28,10 +30,19 @@
   9.1 [На frontend`е отображается 404 страница, вместе искомого контента.](#errors-404-page)  
 
 <h2 id="links">1. Ссылки:</h2>  
+<h3 id="links-local-env">1.1 Local-env:</h3>  
 
->Примечание: приведённые ссылки действительны в случае local-env`а
   - Frontend: http://localhost:40110;  
   - CMS: http://localhost:40110/cms/admin;  
+  - MinIO-S3: http://minio-s3-console.localhost:40110.  
+
+<h3 id="links-local">1.2 Локальная разработка:</h3>  
+
+> Примечание: порты могут изменяться
+
+  - Frontend: http://localhost:3000;  
+  - CMS: http://localhost:1337;  
+  - MinIO-S3: http://localhost:9001.  
 
 <h2 id="auth-in-cms">2. Авторизация в CMS:</h2>  
 Перед тем, как начать взаимодействие с контентом сайта, необходимо пройти авторизацию в системе управления контентом (далее CMS). Для этого необходимо перейти на страницу CMS, открыв ссылку URL в любом доступном браузере.<br><br>
@@ -219,7 +230,8 @@
 <h2 id="local-env-chapter">8. Local-env</h2>  
 <h3 id="postgres-and-s3-backups">8.1 Создание бэкапов postgres и s3:</h3>  
 
-> Примечание: предварительно необходимо запустить local-env. Смотри: https://github.com/TourmalineCore/pelican-local-env  
+> Примечание: предварительно необходимо запустить local-env, смотри:  
+> https://github.com/TourmalineCore/pelican-local-env  
 
 Для создания бэкапа текущей версии postgres и s3 в local-env необходимо:
 1. Перейти в ветку s3-backup в репозитории pelican-local-env:  
@@ -238,16 +250,17 @@ helmfile cache cleanup && helmfile --environment local --namespace local -f depl
 
 5. Перейти в интерфейс MinIO и скачать полученные бэкапы.  
 
-> Примечание: порядок авторизации в MinIO смотри: https://github.com/TourmalineCore/pelican-local-env  
+> Примечание: порядок авторизации в MinIO смотри:  
+> https://github.com/TourmalineCore/pelican-local-env  
 
 <h3 id="postgres-and-s3-rollback-to-backups">8.2 Откат к версии бэкапов postgres и s3:</h3>    
 <h4>Для отката версии postgres к версии бэкапа необходимо:</h3>  
 
 1. Сделать под postgresql-0 доступным, для этого необходимо:  
-1.1 Открыть кластер в Lens и перейти в раздел Workloads.  
+1.1 Открыть кластер в Lens и перейти в раздел Workloads -> Pods.  
 
 ![lens workloads](./images/instruction-strapi-lens-workloads.png)  
-*Раздел Workloads*  
+*Раздел Pods в Workloads*  
 
 1.2 Найти под postgresql-0 и нажать на него.  
 
@@ -259,6 +272,9 @@ helmfile cache cleanup && helmfile --environment local --namespace local -f depl
 ![lens forward postgresql-0 pod](./images/instruction-strapi-lens-forward-postgresql-0-pod.png)  
 *Forward postgresql-0 pod*  
 
+![lens start forward postgresql-0 pod](./images/instruction-strapi-lens-start-forward-postgresql-0-pod.png)  
+*Start forward postgresql-0 pod*  
+
 Откроется окно в браузере, где необходимо скопировать порт.  
 
 ![postgresql-0 pod port](./images/instruction-strapi-postgresql-0-pod-port.png)  
@@ -269,29 +285,44 @@ helmfile cache cleanup && helmfile --environment local --namespace local -f depl
 ![move postgres backup to work directory](./images/instruction-strapi-moving-postgres-backup.png)  
 *Перемещение бэкапа в рабочую директорию*  
 
-3. Выполняем команду очистки схемы базы, чтобы исключить возможность возникновения конфликтов при откате к бэкапу.  
+3. Выполняем команду очистки схемы базы, чтобы исключить возможность возникновения конфликтов при откате к бэкапу. (Нужно подставить порт из пункта 1.3)  
 ```
-psql -U postgres -h localhost -p 61315 -d pelican_db -c "DROP SCHEMA public CASCADE; CREATE SCHEMA public;"
+psql -U postgres -h localhost -p <порт> -d pelican_db -c "DROP SCHEMA public CASCADE; CREATE SCHEMA public;"
 ```
+> Примечание: потребуется ввести пароль от пользователя postgres в базе данных:  
+> `password`: *admin*   
 
-4. Выполняем команду копирования базы данных из бэкапа.  
+4. Выполняем команду копирования базы данных из бэкапа. (Нужно подставить порт из пункта 1.3 и наименование бэкапа)  
 ```
-psql -U postgres -h localhost -p 61315 -d pelican_db -f ./pgsql.sql_2025.03.28.06_02_03UTC.backup
+psql -U postgres -h localhost -p <порт> -d pelican_db -f ./<наименование бэкапа>
 ```  
+
+> Примечание: потребуется ввести пароль от пользователя postgres в базе данных:  
+> `password`: *admin*  
+
+![psql commands](./images/instruction-strapi-psql-commands.png)  
+*Перемещение бэкапа в рабочую директорию*  
   
 <h4>Для отката версии s3 к версии бэкапа необходимо:</h3>  
 
-1. Открыть интерфейс MinIO, перейдя по ссылке: http://minio-s3-console.localhost:40110/browser/pelican-local-env  
-2. Авторизоваться, введя логин и пароль:  
+1. Разархивировать архив бекапа s3 в папку.
+2. Открыть интерфейс MinIO, перейдя по ссылке: http://minio-s3-console.localhost:40110 
+
+> Примечание: в случае локальной разработки ссылка будет другой, смотри пункт 1.2  
+
+3. Авторизоваться, введя логин и пароль:  
 - `login`: *admin*  
 - `password`: *rootPassword*  
-3. Очистить хранилище, выбрав все файлы и нажав на кнопку Delete.  
-4. Нажать кнопку Upload и выбрать все файлы из бэкапа s3.  
+4. Очистить хранилище, выбрав все файлы и нажав на кнопку Delete (если там что-то есть).  
+5. Нажать кнопку Upload и выбрать все файлы из бэкапа s3.  
+
+![minio upload](./images/instruction-strapi-minio-upload.png)  
+*Загрузка файлов в MinIO*  
 
 <h2 id="errors">Возможные ошибки</h2>    
 <h3 id="errors-404-page">9.1 На frontend`е отображается 404 страница, вместе искомого контента:</h3>  
 
-При первом запуске проекта вместо главной страницы и страницы контактного зоопарка (/contact-zoo) 
+<!-- При первом запуске проекта вместо главной страницы и страницы контактного зоопарка (/contact-zoo) 
 будут отображаться страницы 404. Происходит это, потому что на стороне CMS эти страницы еще не были 
 созданы и опубликованы.  
 
@@ -305,8 +336,8 @@ psql -U postgres -h localhost -p 61315 -d pelican_db -f ./pgsql.sql_2025.03.28.0
       *Логин: admin@init-strapi-admin.strapi.io*  
       *Пароль: admin*  
 
-      Примечание: Креды могут измениться, актуальные смотреть в readme.md в репозитории pelican-local-env:  
-      https://github.com/TourmalineCore/pelican-local-env
+      > Примечание: Креды могут измениться, актуальные смотреть в readme.md в репозитории pelican-local-env:  
+      > https://github.com/TourmalineCore/pelican-local-env
 
       ![strapi auth window](./images/strapi-auth-window.png)  
 
@@ -358,17 +389,4 @@ psql -U postgres -h localhost -p 61315 -d pelican_db -f ./pgsql.sql_2025.03.28.0
 
       ![strapi contact-zoo-page](./images/strapi-contact-zoo-page.png)  
 
-      4.2 Далее аналогично главной странице.  
-
-5. Добавление новостей.  
-      5.1 В левой части экрана необходимо выбрать раздел “Новости”. После необходимо нажать на “+ Create new entry”.  
-
-      ![strapi create news](./images/strapi-create-news.png)  
-
-      5.2 Далее логика аналогична добавлению новой страницы.  
-
-6. Добавление категорий документов.  
-      6.1 Аналогично новостям. Поле hasTabs позволяет добавлять/убирать разделение по годам в категории документов.  
-
-7. Добавление документов.  
-      7.1 Аналогично новостям, исключение лишь то, что перед созданием документа должна быть создана хотя бы 1 категория.
+      4.2 Далее аналогично главной странице.   -->
