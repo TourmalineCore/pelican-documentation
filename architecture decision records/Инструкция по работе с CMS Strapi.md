@@ -11,7 +11,7 @@
   3.2 [Черновик и опубликованная версия](#draft-and-published)  
   3.3 [Предварительный просмотр](#preview)  
   3.4 [Обязательные поля](#required-fields)  
-  3.5 [Загрузка файлов.](#upload-images)  
+  3.5 [Загрузка файлов](#upload-images)  
 4. [Редактирование страниц](#edit-pages)  
   4.1 [Добавление блоков](#add-blocks)  
   4.2 [Виды блоков](#kind-blocks)  
@@ -29,7 +29,7 @@
 9. [Возможные ошибки](#errors)  
   9.1 [На frontend`е отображается 404 страница, вместе искомого контента](#errors-404-page)  
 
-<h2 id="links">1. Ссылки:</h2>  
+<h2 id="links">1. Ссылки</h2>  
 <h3 id="links-local-env">1.1 Local-env:</h3>  
 
   - Frontend: http://localhost:40110  
@@ -75,7 +75,7 @@
 После этого текущая авторизованная сессия будет прервана и потребуется повторная авторизация.  
 
 <h3 id="draft-and-published">3.2 Черновик и опубликованная версия контента:</h3>  
-Весь контент в CMS имеет черновую версию (Черновик/Draft) и опубликованную версию (Published). Черновик доступен только через CMS, тогда как опубликованная отображается на сайте.<br><br>
+Весь контент в CMS имеет черновую версию (Draft) и опубликованную версию (Published). Черновик доступен только через CMS, тогда как опубликованная отображается на сайте.<br><br>
 
 ![strapi draft and published](./images/instruction-strapi-draft-and-published.png)  
 *Переключение между версиями контента*  
@@ -105,7 +105,10 @@
 
 Возвращаясь к предыдущему примеру (пункт 3.2), если открыть предварительный просмотр черновига главной страницы, то мы увидим, что отображается версия контента, которая задана в черновике и которая отличается от ранее опубликованной.<br><br>
 
-![strapi pweview draft](./images/instruction-strapi-draft-preview.png)  
+![strapi preview draft](./images/instruction-strapi-draft-fields-preview.png)  
+*Поля черновой версии главной страницы*  
+
+![strapi preview draft](./images/instruction-strapi-draft-preview.png)  
 *Отображение черновой версии главной страницы*  
 
 <h3 id="required-fields">3.4 Обязательные поля:</h3>  
@@ -287,7 +290,7 @@ helmfile cache cleanup && helmfile --environment local --namespace local -f depl
 
 3. Выполняем команду очистки схемы базы, чтобы исключить возможность возникновения конфликтов при откате к бэкапу. (Нужно подставить порт из пункта 1.3)  
 ```
-psql -U postgres -h localhost -p <порт> -d pelican_db -c "DROP SCHEMA public CASCADE CREATE SCHEMA public"
+psql -U postgres -h localhost -p <порт> -d pelican_db -c "DROP SCHEMA public CASCADE; CREATE SCHEMA public;"
 ```
 > Примечание: потребуется ввести пароль от пользователя postgres в базе данных:  
 > `password`: *admin*   
