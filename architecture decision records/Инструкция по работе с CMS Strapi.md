@@ -237,6 +237,33 @@
 <h2 id="header">4.3 Шапка сайта</h2>  
 В этом разделе доступно редактирование информации, которая расположена в модальном окне покупки билетов, которое открывается при нажатии на кнопку “Билеты” в шапке, первом блоке и подвале сайта.
 
+![strapi instruction tickets popup](./images/instruction-strapi-tickets-popup.png)  
+*Внешний вид всплывающего окна покупки билетов*  
+
+![strapi instruction tickets popup trigger in header](./images/instruction-strapi-tickets-popup-trigger-header.png)  
+*Расположение кнопки покупки билетов (шапка сайта)* 
+
+![strapi instruction tickets popup trigger in hero](./images/instruction-strapi-tickets-popup-trigger-hero.png)  
+*Расположение кнопки покупки билетов (первый блок)* 
+
+![strapi instruction tickets popup trigger in footer](./images/instruction-strapi-tickets-popup-trigger-footer.png)  
+*Расположение кнопки покупки билетов (подвал сайта)* 
+
+![strapi instruction tickets popup cms fields](./images/instruction-strapi-tickets-popup-cms-fields.png)  
+*Поля всплывающего окна покупки билетов (часть 1)* 
+
+![strapi instruction tickets popup cms fields](./images/instruction-strapi-tickets-popup-cms-fields-2.png)  
+*Поля всплывающего окна покупки билетов (часть 2)* 
+
+![strapi instruction tickets popup cms fields](./images/instruction-strapi-tickets-popup-cms-fields-3.png)  
+*Поля всплывающего окна покупки билетов (часть 3)* 
+
+![strapi instruction tickets popup cms fields](./images/instruction-strapi-tickets-popup-cms-fields-4.png)  
+*Поля всплывающего окна покупки билетов (часть 4)* 
+
+![strapi instruction tickets popup cms fields](./images/instruction-strapi-tickets-popup-cms-fields-5.png)  
+*Поля всплывающего окна покупки билетов (часть 5)* 
+
 
 <h2 id="news">6. Добавление новостей</h2>
 Для редактирования новостей необходимо выбрать раздел “Новости”, который расположен в левой части экрана в разделе “Content manager”.
