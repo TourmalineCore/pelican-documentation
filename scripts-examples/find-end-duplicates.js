@@ -1,5 +1,3 @@
-/* eslint-disable no-await-in-loop */
-
 // in this repo you can't run it, this is just an example for the future
 
 // This is one-time script for find end duplicates in news archive, without refactoring
@@ -11,7 +9,7 @@
 
 const fs = require(`fs`);
 
-fs.readFile(`zoo_news_archive.json`, `utf8`, (err, data) => {
+fs.readFile(`zoo_news_archive.json`, `utf8`, (data) => {
   const jsonData = JSON.parse(data);
   const urlCounts = {};
 
