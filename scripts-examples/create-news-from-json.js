@@ -1,9 +1,10 @@
 /* eslint-disable no-console */
 /* eslint-disable no-await-in-loop */
 
+// in this repo you can't run it, this is just an example for the future
+
 // This script is for create news in strapi from json (from last to first item of array)
 // without refactoring
-// and for now without seo mata tags (they are commented)
 
 // to run enter command in terminal:
 // node create-news-from-json.js
@@ -13,6 +14,7 @@
 const fs = require(`fs`);
 const axios = require(`axios`);
 
+// your api endpoint, you can change this constant
 const NEWS_API_ENDPOINT = `${process.env.API_URL || `http://localhost:1337/api`}/news`;
 
 async function createNewsFromJson() {
@@ -35,10 +37,10 @@ async function createNewsFromJson() {
         title,
         description,
         innerContent: text,
-        // seo: {
-        //   metaTitle: metaTags.title || ``,
-        //   metaDescription: metaTags.description || ``,
-        // },
+        seo: {
+          metaTitle: metaTags.title || ``,
+          metaDescription: metaTags.description || ``,
+        },
       });
     }
 
@@ -52,7 +54,7 @@ async function createTestNews({
   title,
   description,
   innerContent,
-  // seo,
+  seo,
 }) {
   try {
     const response = await axios.post(NEWS_API_ENDPOINT, {
@@ -60,7 +62,7 @@ async function createTestNews({
         title,
         description,
         innerContent,
-        // seo,
+        seo,
       },
     });
 
