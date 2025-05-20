@@ -27,7 +27,7 @@ Content Security Policy (CSP) — это механизм защиты, реал
 
 - 'none' — запретить полностью
 
-- 'unsafe-inline', 'unsafe-eval' — разрешить инлайн-JS или eval (небезопасно)
+- 'unsafe-inline', 'unsafe-eval' — разрешить инлайн-JS или [eval()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval) (небезопасно)
 
 - конкретные URL или схемы (https:)
 
@@ -36,7 +36,7 @@ Content Security Policy (CSP) — это механизм защиты, реал
 Основной проблемой в CSP-репорте являлось использование небезопасных значений:
 - 'unsafe-inline' — разрешает любые встроенные `<script>`
 
-- 'unsafe-eval' — разрешает [eval()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval)
+- 'unsafe-eval' — разрешает eval()
 
 Избавиться от этих директив можно, только если отказаться от инлайн-элементов, но они присутствуют в HTML и необходимы для корректной работы некоторых компонентов.
 
