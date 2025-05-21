@@ -17,7 +17,7 @@ CORS (Cross-Origin Resource Sharing) — это механизм в браузе
 
 - **Access-Control-Allow-Origin: https://chelzoo.tech** - Ограничивает доступ только для Origin: https://chelzoo.tech, что на практике означает запрет на кросс-доменные запросы с большинства сайтов.
 
-- **Cross-Origin-Opener-Policy: same-origin** - Изолирует контексты между окнами и вкладками с разными origin-ами, защищая от атак типа Spectre.
+- **Cross-Origin-Opener-Policy: same-origin** - Изолирует контексты между окнами и вкладками с разными origin-ами, защищая от атак.
 
 2. Заголовки безопасности
 
