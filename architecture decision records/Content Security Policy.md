@@ -34,7 +34,7 @@ Content Security Policy (CSP) — это механизм защиты, реал
 Во время разработки и настройки CSP хорошей практикой считается использование заголовка Content-Security-Policy-Report-Only вместо Content-Security-Policy, чтобы отлавливать нарушения и понять, что ещё работает небезопасно, прежде чем включать жёсткую политику с блокировкой контента.
 
 Основной проблемой в CSP-репорте являлось использование небезопасных значений:
-- 'unsafe-inline' — разрешает любые встроенные `<script>`
+- 'unsafe-inline' — разрешает любые встроенные скрипты и стили
 
 - 'unsafe-eval' — разрешает eval()
 
@@ -53,7 +53,7 @@ Content Security Policy (CSP) — это механизм защиты, реал
 
 Мы добавили файл middleware.ts в src/, реализующий динамическую генерацию nonce и установку CSP-заголовка. Пример реализации взят из:
 - [официальной документации Next.js](https://nextjs.org/docs/app/guides/content-security-policy)
-- [доклада на конференции GitNation](https://gitnation.com/contents/content-security-policy-with-nextjs-leveling-up-your-websites-security/video)
+- [доклада на конференции React Summit](https://gitnation.com/contents/content-security-policy-with-nextjs-leveling-up-your-websites-security/video)
 
 Этот middleware:
 1) генерирует nonce
