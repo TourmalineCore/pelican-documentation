@@ -116,7 +116,18 @@ dangerouslySetInnerHTML={{
 ![csp devtools nonce](./images/csp-devtools-nonce.png)
 
 Так выглядят nonce и hash в HTML страницы
-![csp devtools nonce](./images/nonce-and-hash-in-page-code.png)
+![nonce and hash in page code](./images/nonce-and-hash-in-page-code.png)
+
+### Тестирование
+
+Для тестирования рассматриваем реализацию теста, который выставляет хэддер Content-Security-Policy-Report-Only и проверяет отчет на наличие замечаний.   
+Существует небольшая проблема в реализации из-за директивы    [upgrade-insecure-requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Upgrade-Insecure-Requests) в CSP хэддерах, которая сообщает браузеру автоматически заменять все HTTP-запросы на HTTPS-запросы.   
+Content-Security-Policy-Report-Only выводит ошибку-предупреждение
+
+![csp error](./images/error-CSP-Report-Only.png)
+Данная ошибка сообщает, что занный заголовок игнорируется, так как заголовок Content-Security-Policy-Report-Only не должен изменять поведение браузера, а лишь служит для мониторинга нарушений. 
+
+Решением является удаление директивы upgrade-insecure-requests из CSP-заголовка Content-Security-Policy-Report-Only на время тестирования.
 
 ## Альтернативы
 Не рассматривали.
