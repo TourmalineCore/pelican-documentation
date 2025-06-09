@@ -3,12 +3,13 @@
 
 // in this repo you can't run it, this is just an example
 
-// This script is for create news in strapi from json (from last to first item of array)
+// This script is for creating news in strapi from json (from last to first item of array)
+
 // without refactoring
 
-// to run enter command in terminal:
+// to run, enter command in terminal:
 // node create-news-from-json.js
-// dont forget to add file to tsconfig.json:
+// don't forget to add file to tsconfig.json:
 // "include": ["create-news-from-json.js"]
 
 const fs = require(`fs`);

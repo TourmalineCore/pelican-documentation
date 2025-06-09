@@ -1,11 +1,13 @@
 // in this repo you can't run it, this is just an example
 
-// This is one-time script for find duplicates of last segment of the URLs. 
+// This is a one-time script for finding duplicates of last segment of the URLs. 
 // e.g. /puma-running, puma-running is our last segment
 
-// to run enter command in terminal:
+// without refactoring
+
+// to run, enter command in terminal:
 // node find-end-duplicates.js
-// dont forget to add file to tsconfig.json:
+// don't forget to add file to tsconfig.json:
 // "include": ["find-end-duplicates.js"]
 
 const fs = require(`fs`);

@@ -2,11 +2,13 @@
 
 // in this repo you can't run it, this is just an example
 
-// This is one-time script for parsing the news archive from chelzoo.ru, without refactoring
+// This is a one-time script for parsing the news archive from chelzoo.ru
 
-// to run enter command in terminal:
+// without refactoring
+
+// to run, enter command in terminal:
 // node zoo-parser.js
-// dont forget to add file to tsconfig.json:
+// don't forget to add file to tsconfig.json:
 // "include": ["zoo-parser.js"]
 
 const {
