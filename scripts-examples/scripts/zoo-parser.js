@@ -1,6 +1,6 @@
 /* eslint-disable no-await-in-loop */
 
-// in this repo you can't run it, this is just an example for the future
+// in this repo you can't run it, this is just an example
 
 // This is one-time script for parsing the news archive from chelzoo.ru, without refactoring
 

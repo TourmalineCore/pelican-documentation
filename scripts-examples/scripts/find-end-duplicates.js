@@ -1,6 +1,7 @@
-// in this repo you can't run it, this is just an example for the future
+// in this repo you can't run it, this is just an example
 
-// This is one-time script for find end duplicates in news archive, without refactoring
+// This is one-time script for find duplicates of last segment of the URLs. 
+// e.g. /puma-running, puma-running is our last segment
 
 // to run enter command in terminal:
 // node find-end-duplicates.js
@@ -9,9 +10,14 @@
 
 const fs = require(`fs`);
 
-fs.readFile(`zoo_news_archive.json`, `utf8`, (data) => {
+fs.readFile(`zoo_news_archive.json`, `utf8`, (err, data) => {
   const jsonData = JSON.parse(data);
   const urlCounts = {};
+
+  if (err) {
+    console.error(`Ошибка при чтении файла:`, err);
+    return;
+  }
 
   jsonData.forEach((item) => {
     const {
@@ -21,19 +27,19 @@ fs.readFile(`zoo_news_archive.json`, `utf8`, (data) => {
     const lastSlashIndex = url.lastIndexOf(`/`);
     const secondLastSlashIndex = url.lastIndexOf(`/`, lastSlashIndex - 1);
 
-    const urlEnd = url.substring(secondLastSlashIndex);
+    const lastSegment = url.substring(secondLastSlashIndex);
 
-    if (urlCounts[urlEnd]) {
-      urlCounts[urlEnd]++;
+    if (urlCounts[lastSegment]) {
+      urlCounts[lastSegment]++;
     } else {
-      urlCounts[urlEnd] = 1;
+      urlCounts[lastSegment] = 1;
     }
   });
 
   const resultArray = Object.entries(urlCounts)
     .filter(([_, count]) => count > 1)
-    .map(([urlEnd, count]) => ({
-      urlEnd,
+    .map(([lastSegment, count]) => ({
+      lastSegment,
       count,
     }));
 
