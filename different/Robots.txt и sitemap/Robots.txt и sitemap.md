@@ -10,15 +10,12 @@
 Пример нашего robots.txt:
 
 ```
-# *
-User-agent: * // * Означает, что мы скрываем страницу для всех роботов (Googlebot, Yandex и т.д)
-Disallow: /components  // Скрываем страницу компонентов
+User-agent: *// * Означает, что мы скрываем страницу для всех роботов (Googlebot, Yandex и т.д)
+Disallow: /components // Скрываем страницу компонентов
 
-# Host
-Host: https://chelzoo.ru  // Домен нашего сайта
+Host: chelzoo.ru // Домен нашего сайта
 
-# Sitemaps
-Sitemap: /api/get-sitemap // Эндпоинт, который возвращает xml файл
+Sitemap: https://chelzoo.ru/api/get-sitemap / Эндпоинт, который возвращает xml файл
 ```
 
 ### Sitemap.xml
