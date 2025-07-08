@@ -37,3 +37,4 @@
 ## Different
 - [Управление кэшом](./different/Управление%20кэшированием.md)
 - [Тестирование в разных ОС и браузерах](./different/Тестирование%20в%20разных%20ОС%20и%20браузерах.md)
+- [Robots.txt и sitemap](./different/Robots.txt%20и%20sitemap/Robots.txt%20и%20sitemap.md)
