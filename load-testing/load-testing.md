@@ -1,12 +1,21 @@
 # Нагрузочное тестирование стейджинга Chelzoo.tech
 
 ## Инструкция по запуску
-1. Откройте load-testing.zip
-2. Разархивируйте его на свое устройство
-3. Откройте папку load-testing через VSCode
-4. Запустите окно VSCode в режиме devcontainers
-5. Изучите файл loadtest.yml и выставьте необходимые вам параметры
-6. Пропишите ```stepci run --loadtest loadtest.yml```
+
+### Предусловия
+1. Установлен [VSCode](https://code.visualstudio.com/)
+2. Установлено расширение [Devcontainers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) в VSCode
+3. Установлен и запущен [Docker Desktop](https://www.docker.com/)
+
+### Шаги для запуска
+1. Запустите окно VSCode в режиме Devcontainers, нажав на **две стрелочки** в левом нижнем углу вашего окна VSCode, затем **Reopen in Container**
+![step](step.png)
+2. Перейдите в файл [/script/loadtest.yml](\script\loadtest.yml)
+3. Изучите файл и настройте необходимые вам параметры
+4. Запустите терминал, нажав на **Terminal -> New terminal** в левом верхнем углу вашего окна VSCode
+![another step](step2.png)
+5. Пропишите в терминале команду ```stepci run --loadtest loadtest.yml```
+6. Дождитесь результата выполнения нагрузочного теста
 7. Ознакомьтесь с результатами нагрузочного тестирования
 
 ## Интерпретация результатов
@@ -52,5 +61,5 @@
 
 ### **Workflow passed** (Итог): Общий результат выполнения теста (успех/провал)
 
-## Результаты нагрузочного тестирования
+## Результаты последнего нагрузочного тестирования
 ![Test results](results.png)
