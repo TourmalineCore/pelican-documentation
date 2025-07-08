@@ -30,7 +30,7 @@ Sitemap: https://chelzoo.ru/api/get-sitemap / Эндпоинт, который �
 ![alt text](./images/image.png)
 
 Здесь можно установить домен сайта.
-![alt text](image-1.png)
+![alt text](./images/image-1.png)
 
 Конфигурацию для коллекций.
 ![alt text](./images/image-2.png)
