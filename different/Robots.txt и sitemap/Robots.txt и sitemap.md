@@ -24,7 +24,7 @@ Sitemap: https://chelzoo.ru/api/get-sitemap / Эндпоинт, который �
 #### Настройка Sitemap.xml
 Настройка sitemap осуществляется в репозитории [pelican-cms](https://github.com/TourmalineCore/pelican-cms), т.к наши страницы зависят от добавленного контента в Strapi. Для генерации sitemap используется плагин [strapi-5-sitemap-plugin](https://market.strapi.io/plugins/strapi-5-sitemap-plugin).
 
-!Важно для того, чтобы сайт начала индексироваться поисковиками, в репозитории [pelican-ui](https://github.com/TourmalineCore/pelican-ui), необходимо добавить в .env ENABLE_SEO_INDEXING=true.
+!Важно, для того, чтобы сайт начала индексироваться поисковиками, в репозитории [pelican-ui](https://github.com/TourmalineCore/pelican-ui) необходимо добавить в .env ENABLE_SEO_INDEXING=true.
 
 Переходим в настройки во вкладку sitemap configuration.
 ![alt text](./images/image.png)
