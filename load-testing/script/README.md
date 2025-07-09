@@ -1,4 +1,4 @@
 Для запуска load теста:
 ```bash
-stepci run --loadtest loadtest.yml
+stepci run --loadtest ./load-testing/script/loadtest.yml
 ```
