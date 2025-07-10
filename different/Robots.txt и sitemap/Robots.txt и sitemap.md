@@ -66,6 +66,7 @@ module.exports = {
 !Важно, для того, чтобы сайт начала индексироваться поисковиками, в репозитории [pelican-ui](https://github.com/TourmalineCore/pelican-ui) необходимо добавить в .env ENABLE_SEO_INDEXING=true.
 
 Переходим в настройки во вкладку sitemap configuration.
+
 ![alt text](./images/image.png)
 
 Здесь можно установить домен сайта.
