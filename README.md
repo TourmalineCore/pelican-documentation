@@ -32,6 +32,7 @@
 - [Результаты исследования подходов к реализации доступности](architecture%20decision%20records/a11y/Доступность.md)
 - [Гайдлайн по доступности](architecture%20decision%20records/a11y/Гайдлайн.md)
 - [Тестирование доступности](architecture%20decision%20records/a11y/Тестирование%20доступности.md)
+- [Выбранные параметры для sitemap](architecture%20decision%20records/Выбранные%20параметры%20для%20sitemap.md)
 
 
 ## Разное
