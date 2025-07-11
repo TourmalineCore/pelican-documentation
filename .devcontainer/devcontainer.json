@@ -1,0 +1,12 @@
+{
+    "name": "Load testing",
+    "image": "node:19-alpine",
+    "postCreateCommand": "npm install -g stepci wait-on imagemin-cli && apk add htop",
+    "customizations": {},
+    "remoteUser": "root",
+    "runArgs": [
+        "--network=host",
+        "--memory=1.5g",
+        "--cpus=1"
+    ]
+}

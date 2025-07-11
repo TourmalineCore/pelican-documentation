@@ -39,3 +39,4 @@
 - [Тестирование в разных ОС и браузерах](./different/Тестирование%20в%20разных%20ОС%20и%20браузерах.md)
 - [Robots.txt и sitemap](./different/Robots.txt%20и%20sitemap/Robots.txt%20и%20sitemap.md)
 - [Обзор лицензий проекта](./architecture%20decision%20records/licenses/Лицензии.md)
+- [Нагрузочное тестирование](./load-testing/Нагрузочное%20тестирование.md)
