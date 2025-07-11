@@ -12,7 +12,7 @@
 - [pelican-env-synchronizer](https://github.com/TourmalineCore/pelican-env-synchronizer) - репозиторий с функционалом для периодической синхронизации и обновления запущенного local-env или prod-env  до текущей актуальной версии каждого сервиса проекта.
 - [pelican-github-workflows](https://github.com/TourmalineCore/pelican-github-workflows) - репозиторий, где хранятся переиспользуемые GitHub Actions Workflows.
 
-## Architecture Decision Records
+## Записи об архитектурных решениях
 
 Здесь мы также фиксируем решения, которые принимаем командой относительно архитектуры проекта и подходов к разработке.
 
@@ -34,7 +34,9 @@
 - [Тестирование доступности](architecture%20decision%20records/a11y/Тестирование%20доступности.md)
 
 
-## Different
+## Разное
 - [Управление кэшом](./different/Управление%20кэшированием.md)
 - [Тестирование в разных ОС и браузерах](./different/Тестирование%20в%20разных%20ОС%20и%20браузерах.md)
+- [Robots.txt и sitemap](./different/Robots.txt%20и%20sitemap/Robots.txt%20и%20sitemap.md)
+- [Обзор лицензий проекта](./architecture%20decision%20records/licenses/Лицензии.md)
 - [Нагрузочное тестирование](./load-testing/Нагрузочное%20тестирование.md)
