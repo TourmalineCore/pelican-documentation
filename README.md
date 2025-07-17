@@ -7,6 +7,7 @@
 - [pelican-ui](https://github.com/TourmalineCore/pelican-ui) - репозиторий, где лежит фронтенд.
 - [pelican-cms](https://github.com/TourmalineCore/pelican-cms) - репозиторий с кодом для Strapi CMS. 
 - [pelican-local-env](https://github.com/TourmalineCore/pelican-local-env) - репозиторий с кодом, который развертывает весь проект в локальном кластере k8s в Docker.
+- [pelican-prod-env](https://github.com/TourmalineCore/pelican-prod-env) - репозиторий с кодом, который развертывает весь проект в продакшен кластере k8s в Docker.
 - [pelican-db-backupper](https://github.com/TourmalineCore/pelican-db-backupper) - репозиторий с функционалом для периодического создания бэкапов базы данных PostgreSQL для Strapi CMS.
 - [pelican-s3-backupper](https://github.com/TourmalineCore/pelican-s3-backupper) - репозиторий с функционалом для периодического создания бэкапов S3 для Strapi CMS.
 - [pelican-env-synchronizer](https://github.com/TourmalineCore/pelican-env-synchronizer) - репозиторий с функционалом для периодической синхронизации и обновления запущенного local-env или prod-env  до текущей актуальной версии каждого сервиса проекта.
