@@ -12,6 +12,7 @@
 - [pelican-s3-backupper](https://github.com/TourmalineCore/pelican-s3-backupper) - репозиторий с функционалом для периодического создания бэкапов S3 для Strapi CMS.
 - [pelican-env-synchronizer](https://github.com/TourmalineCore/pelican-env-synchronizer) - репозиторий с функционалом для периодической синхронизации и обновления запущенного local-env или prod-env  до текущей актуальной версии каждого сервиса проекта.
 - [pelican-github-workflows](https://github.com/TourmalineCore/pelican-github-workflows) - репозиторий, где хранятся переиспользуемые GitHub Actions Workflows.
+- [pelican-monitoring](https://github.com/TourmalineCore/pelican-monitoring) - репозиторий, где живут авто-тесты, которые проверяют, что сайт и его сервисы функционируют в продакшене корректно.
 
 ## Записи об архитектурных решениях
 
