@@ -669,8 +669,6 @@
 ![strapi other pages component](./images/instruction-strapi-other-pages-components.png)<br/>
 *Список готовых компонентов*
 
->ВАЖНО. Для всех новых страниц необходимо добавлять "Блок SEO", для того чтобы страницы хорошо индексировались поисковиками. 
-
 После добавления нескольких компонентов их можно передвигать местами, для это воспользуйтесь специальным участком для перемещения.
 
 ![strapi other pages move components](./images/instruction-strapi-other-pages-move-components.png)
