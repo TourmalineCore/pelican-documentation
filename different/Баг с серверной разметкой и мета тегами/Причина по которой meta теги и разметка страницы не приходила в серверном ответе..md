@@ -18,11 +18,11 @@ if (windowWidth === 0) {
 
 До, meta тегов и разметки страницы в response страницы нету.
 
-![alt text](images/image.png)
+![alt text](images/meta-tags-absent.png)
 
 После, мета теги и разметка страницы есть в response страницы.
 
-![alt text](images/image-1.png)
+![alt text](images/meta-tags-present.png)
 
 Такое изменение повлекло за собой также прирост производительности сайта — показания Lighthouse улучшились:
 
