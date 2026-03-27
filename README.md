@@ -43,3 +43,4 @@
 - [Robots.txt и sitemap](./different/Robots.txt%20и%20sitemap/Robots.txt%20и%20sitemap.md)
 - [Обзор лицензий проекта](./architecture%20decision%20records/licenses/Лицензии.md)
 - [Нагрузочное тестирование](./load-testing/Нагрузочное%20тестирование.md)
+- [Как переименовывать поля в Strapi](./different/Как%20переименовывать%20поля%20в%20Strapi/Как%20переименовывать%20поля%20в%20Strapi.md)
