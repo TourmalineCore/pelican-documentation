@@ -561,7 +561,7 @@
 ![get vk video code](./images/get-vk-video-code.png)<br/>
 *Получение ссылки для вставки в новость*
 
-После этого вы получите вот такой код из которого вам нужно будет скопировать **только** ссылку из src.
+После этого вы получите вот такой код, из которого вам нужно будет скопировать **только** ссылку из src.
 
 ```
 <iframe src="https://vk.ru/video_ext.php?oid=-71671982&id=456242156&hash=ad68b340cd8858bc" width="640" height="360" frameborder="0" allowfullscreen="1" style="background-color: #000" allow="autoplay; encrypted-media; fullscreen; picture-in-picture"></iframe>
