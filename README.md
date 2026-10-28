@@ -13,6 +13,7 @@
 - [pelican-env-synchronizer](https://github.com/TourmalineCore/pelican-env-synchronizer) - репозиторий с функционалом для периодической синхронизации и обновления запущенного local-env или prod-env  до текущей актуальной версии каждого сервиса проекта.
 - [pelican-github-workflows](https://github.com/TourmalineCore/pelican-github-workflows) - репозиторий, где хранятся переиспользуемые GitHub Actions Workflows.
 - [pelican-monitoring](https://github.com/TourmalineCore/pelican-monitoring) - репозиторий, где живут авто-тесты, которые проверяют, что сайт и его сервисы функционируют в продакшене корректно.
+- [pelican-cloud](https://github.com/TourmalineCore/pelican-cloud) - репозиторий, где хранится декларативная Terraform-конфигурация облачных ресурсов.
 
 ## Записи об архитектурных решениях
 
